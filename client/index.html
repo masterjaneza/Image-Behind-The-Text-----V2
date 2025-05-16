@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image behind text | V2</title>
+    <link rel="icon" type="image/png" href="logo 1.png" >
+x
+    <!-- Google Fonts: Roboto and Poppins for modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #181c24;
+            --glass-bg: rgba(24, 28, 36, 0.55);
+            --glass-border: rgba(255,255,255,0.12);
+            --neon: #00ffd0;
+            --neon2: #ff4ecd;
+            --neon3: #ffe156;
+            --white: #f8f8f8;
+            --subtitle: #b0b8c9;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #181c24 0%, #232946 100%);
+            overflow: hidden;
+            position: relative;
+        }
+        /* Animated gradient overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(120deg, #232946 0%, #181c24 100%);
+            opacity: 0.7;
+            animation: gradientMove 8s ease-in-out infinite alternate;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        /* Floating blurred accent shape */
+        .accent-shape {
+            position: fixed;
+            top: 10%;
+            left: 60%;
+            width: 340px;
+            height: 340px;
+            background: radial-gradient(circle at 30% 30%, var(--neon2) 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.45;
+            z-index: 1;
+            pointer-events: none;
+            animation: floatAccent 10s ease-in-out infinite alternate;
+        }
+        @keyframes floatAccent {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(40px) scale(1.08);}
+        }
+        .glass-card {
+            position: relative;
+            z-index: 2;
+            background: var(--glass-bg);
+            border-radius: 32px;
+            box-shadow: 0 8px 40px 0 rgba(0, 255, 208, 0.10), 0 2px 8px 0 rgba(0,0,0,0.18);
+            border: 2px solid var(--glass-border);
+            padding: 64px 96px 48px 96px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            max-width: 92vw;
+            animation: fadeInCard 1.2s cubic-bezier(.4,0,.2,1);
+        }
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(40px) scale(0.98);}
+            to { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        .text-background {
+            font-size: clamp(2.8rem, 8vw, 6.5rem);
+            font-weight: 900;
+            background-image: 
+                url('portfolioimage-5.jpg'),
+                linear-gradient(90deg, var(--neon) 0%, var(--neon2) 60%, var(--neon3) 100%);
+            background-repeat: no-repeat, no-repeat;
+            background-size: cover, 200% auto;
+            background-position: center, left center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-align: center;
+            font-family: 'Roboto', 'Poppins', Arial, sans-serif;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+            /* Neon border only outside */
+            -webkit-text-stroke: 1.5px var(--neon);
+            text-stroke: 3px var(--neon);
+            filter: drop-shadow(0 0 5px var(--neon));
+            transition: background-position 1s cubic-bezier(.4,0,.2,1), filter 0.4s;
+            cursor: pointer;
+            user-select: none;
+            animation: shineIn 1.6s cubic-bezier(.4,0,.2,1);
+        }
+        .text-background:hover {
+            background-position: center, right center;
+            filter: drop-shadow(0 0 18px var(--neon2));
+        }
+        @keyframes shineIn {
+            from { letter-spacing: 0; filter: blur(8px) brightness(1.5);}
+            to { letter-spacing: 2px; filter: none;}
+        }
+        .subtitle {
+            font-size: 1.6rem;
+            background: linear-gradient(90deg, var(--neon2) 0%, var(--neon3) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 18px;
+            letter-spacing: 1.5px;
+            text-align: center;
+            text-shadow: 0 1px 12px rgba(255,78,205,0.12);
+            -webkit-text-stroke: 1px var(--white);
+            text-stroke: 1px var(--white);
+            animation: fadeInSubtitle 2s cubic-bezier(.4,0,.2,1);
+        }
+        @keyframes fadeInSubtitle {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .cta-btn {
+            margin-top: 18px;
+            padding: 0.9em 2.2em;
+            font-size: 1.2rem;
+            font-family: inherit;
+            font-weight: 700;
+            color: var(--dark-accent);
+            background: linear-gradient(90deg, var(--neon) 0%, var(--neon2) 100%);
+            border: none;
+            border-radius: 2em;
+            box-shadow: 0 2px 16px 0 rgba(0,255,208,0.13);
+            cursor: pointer;
+            transition: background 0.4s, color 0.3s, transform 0.2s;
+            letter-spacing: 1px;
+            outline: none;
+            animation: fadeInBtn 2.2s cubic-bezier(.4,0,.2,1);
+        }
+        .cta-btn:hover {
+            background: linear-gradient(90deg, var(--neon2) 0%, var(--neon) 100%);
+            color: var(--white);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 4px 24px 0 var(--neon2), 0 2px 16px 0 var(--neon);
+        }
+        @keyframes fadeInBtn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 700px) {
+            .glass-card {
+                padding: 32px 8vw 24px 8vw;
+            }
+            .text-background {
+                font-size: clamp(2rem, 10vw, 3.2rem);
+            }
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            .accent-shape {
+                width: 180px;
+                height: 180px;
+                left: 40%;
+                top: 16%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="accent-shape"></div>
+    <div class="glass-card">
+        <div class="text-background">MasterJaneza</div>
+        <div class="subtitle">Creative Developer &amp; Designer</div>
+        <button class="cta-btn">
+            Let's Connect
+        </button>
+    </div>
+</body>
+</html>
