@@ -1,4 +1,4 @@
-# ✨ MasterJaneza V2 | Neon Text Card UI
+# ✨ Image Behind Text | V2 - Neon Style
 
 Welcome to **Version 2** of the "Image Behind Text" concept — now reimagined with a dark, cyber-glass aesthetic, animated gradients, and glowing text. No JavaScript. No frameworks. Just raw **HTML + CSS** beauty.
 
