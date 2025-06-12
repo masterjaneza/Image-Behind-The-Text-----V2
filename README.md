@@ -46,6 +46,28 @@ Inspired by modern UI trends and a relentless desire to stand out. Whether you'r
 
 ---
 
+
+---
+
+---
+
+## ⚙️ Setup & Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/masterjaneza/Horizontal-Scroll-Gallery---V1.git
+
+**Open the Project:**
+
+- Open `index.html` in your browser  
+  **or**
+- Use **Live Server** in VS Code.
+--- 
+
+---
+
+
+
 ## 🧪 License
 
 Feel free to use, modify, or remix. No pressure. Just give credit where credit's due. 😉
